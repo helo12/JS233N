@@ -121,7 +121,7 @@ console.log("reset");
 }
 
 // When the page has finished loading, call the function init
-init();
+window.onload = init;
 
 
 

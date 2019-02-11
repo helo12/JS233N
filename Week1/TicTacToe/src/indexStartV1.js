@@ -142,4 +142,4 @@ function disableAll() {
 
 // When the page has finished loading, call the function init    
 
-window.onload = init();
+window.onload = init;

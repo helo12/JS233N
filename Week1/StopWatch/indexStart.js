@@ -1,25 +1,41 @@
 // Create a class called StopWatch.
 class StopWatch
 {
-    constructor(start, stop, reset, minutes, seconds) {
-        this.start = start;
+    
+    constructor() {
+        
+       /* this.start = start;
         this.stop = stop;
         this.reset = reset;
-        this.minutes = document.getElementById(minutes);
-        this.seconds = document.getElementById(seconds);
-
+        */
+   
         this.start = document.getElementById("start");
         this.stop = document.getElementById("stop");
         this.reset = document.getElementById("reset");
 
-        this.start.addEventListener("click",startTimer);
-        this.stop.addEventListener("click",stopTimer);
-        this.reset.addEventListener("click",resetTimer);
+        this.startTimer = this.startTimer.bind(this);
+        this.stopTimer = this.stopTimer.bind(this);
+        this.resetTimer = this.resetTimer.bind(this);
+        this.pad = this.pad.bind(this);
+        
+        //this.interval = this.interval.bind(this);
+        this.interval = null;
+        this.incrementTimer = null;
+
+        /*this.start.onclick = this.startTimer;
+        this.stop.onclick = this.stopTimer;
+        this.reset.onclick = this.resetTimer;
+        */
+
+        this.start.addEventListener("click",this.startTimer.bind(this));
+        this.stop.addEventListener("click",this.stopTimer.bind(this));
+        this.reset.addEventListener("click",this.resetTimer.bind(this));
        
-        this.start.onclick = this.startTimer.bind(this);
-        this.stop.onclick = this.stopTimer.bind(this);
-        this.reset.onclick = this.resetTimer.bind(this);
+        
+       
     }
+
+   
     /*
       
 
@@ -33,82 +49,81 @@ class StopWatch
             this will refer to the button (not the class) when the 
             event fires
             -- this.startButton.onclick = this.startTimer.bind(this);
-    */
+        */
     startTimer() {
-    if(this.isRunning == false){
-        this.isRunning=true;
-        this.interval = setInterval("incrementTimer()", 1000);
-       
+        console.log(this);
+        if(!this.isRunning){
+            this.isRunning=true;     
+
+           // this.interval = setInterval(this.incrementTimer, 1000);
+            this.interval = setInterval( () => {
+                console.log("starting the timer");
+                console.log( this);
+                this.incrementTimer();
+            }, 1000);
+        }
+
+
+        // if the timer is NOT running, start it
+        // call the function incrementTimer every second
+        // save the timer in a the timer variable
+      //  console.log("start");
     }
- 
-    this.timer= this.timerTime;
-    // if the timer is NOT running, start it
-    // call the function incrementTimer every second
-    // save the timer in a the timer variable
-console.log("start");
-}
 
- incrementTimer() {
-    // increment the timerTime
-    // calculate the number of minutes and seconds
-    
-    this.timerTime++;
-
-
-    this.second.innerHTML = pad(timerTime);
-    this.minutes.innerHTML = pad(x);
-    if( this.timerTime > 60){
+    incrementTimer() {
+        console.log("kuygkuygkuyg " +this);
+        // increment the second
+        // calculate the number of minutes and seconds
         
-        this.second.innerHTML = 0;
-        this.timerTime=0;
-        this.x++;
-        this.minutes.innerHTML = x;
-      
-    }
-  
-}
+        console.log(this.second);
+        this.second++;
+        this.minute = Math.floor(this.minute/60);
+        this.second = this.second%60
 
- pad(number) {
-    // add a leading 0 if the number is < 10
-   
-
-    if(timerTime<10){
-        this.second.innerHTML = "0" +timerTime;
-    }
-    else{
-        this.second.innerHTML = timerTime;
-    }
-    if(x<10){
-        return "0" +  this.x;
-    }
-    else{
-        return  this.x;
-    }
-  
-}
-
- stopTimer() {
-    this.clearInterval(interval);
-    this.isRunning= false;
     
-    // if the timer is running, stop it
-console.log("Stop");
-}
-
-
-resetTimer() {
-    // stop the timer
-    this.stopTimer();
-    this.timerTime = 0;
-    this.x=0;
-
-    this.second.innerHTML = "01";
-    this.minute.innerHTML = "00";
-    // set the timerTime back to 0
     
-    // write 00 to the elements on the page for minutes and seconds
-console.log("reset");
-}
+
+        document.getElementById("minutes").innerHTML = this.pad(this.second);
+        document.getElementById("seconds").innerHTML = this.pad(this.minute);
+    
+    
+    }
+
+    pad(number) {
+        // add a leading 0 if the number is < 10
+    
+
+            if(number<10){
+                return "0" + number;
+            }
+            return number;
+        
+        
+        }
+
+    stopTimer() {
+        this.clearInterval(this.interval);
+        // this.interval.clearInterval();
+        this.isRunning= false;
+        
+        // if the timer is running, stop it
+      console.log("Stop");
+    }
+
+
+    resetTimer() {
+        // stop the timer
+        this.stopTimer();
+        this.second = 0;
+        this.minute=0;
+
+        this.second.innerHTML = "01";
+        this.minute.innerHTML = "00";
+        // set the second back to 0
+        
+        // write 00 to the elements on the page for minutes and seconds
+         console.log("reset");
+    }
 
     /*
         Convert each function to a method.  
@@ -117,8 +132,13 @@ console.log("reset");
         -   Add this. in front of every variable and method
     */
 }
-var stopWatch;
-stopWatch = new StopWatch()
+
+
+
+window.onload = function(){
+    console.log("ON")
+    let stopWatch = new StopWatch()
+    };
 
 // Create a variable called stopWatch
 
