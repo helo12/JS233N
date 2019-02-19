@@ -25,7 +25,9 @@ class ToDoClass{
 */
         constructor() {
             localStorage.clear();
+            if(localStorage.length>0){
             this.tasks = JSON.parse(localStorage.getItem('TASKS'));
+            }
             if(!this.tasks) {
                 this.tasks = [
                     {task: 'Go to Dentist', isComplete: false},

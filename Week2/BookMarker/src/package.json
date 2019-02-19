@@ -1,0 +1,11 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "bookmarker json file",
+  "main": "indexStart.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Tim Allen",
+  "license": "UNLICENSED"
+}
