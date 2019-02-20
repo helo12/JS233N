@@ -9,6 +9,7 @@ module.exports = {
     output:{
     path:__dirname + "/dist",
     filename: '[name].js',
+<<<<<<< HEAD
     publicPath: '/dist/',
     },
     devtool: 'source-map',
@@ -18,6 +19,9 @@ module.exports = {
         hot: true,
         //devtool: 'source-map',
         },        
+=======
+    },
+>>>>>>> 377bf1246e91ab2e4e73716c973bf8b14e2e23d2
     module: {
             rules: [
                     {
@@ -31,6 +35,7 @@ module.exports = {
                     }
                 },
                 {
+<<<<<<< HEAD
                     test: /\.(less|css)$/,
                     use: [
                         {
@@ -84,4 +89,11 @@ module.exports = {
 
             ],
             
+=======
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+                },
+            ],
+        }, 
+>>>>>>> 377bf1246e91ab2e4e73716c973bf8b14e2e23d2
     }
