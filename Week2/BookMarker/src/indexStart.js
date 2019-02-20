@@ -75,7 +75,10 @@ class Bookmarker
     `;
     }
 
+
     fillBookMarkList(bookMarks){
+        localStorage.setItem(BookMark, bookMarks);
+        var bookmarkHtml = generateBookMark()
      /*   -   Add the fillBookmarksList method.  It has bookmarks as its parameter.
         -   Save the bookmarks to local storage
         -   Create a variable bookmarkHtml and set it equal to the
